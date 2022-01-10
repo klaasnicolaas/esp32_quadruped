@@ -244,10 +244,12 @@ static int handleSerialCommand(unsigned long ts, int key) {
             break;
 
         case 'z':
+            // Decrease leg height
             _cmdHandler.toggleButtons(BTN_HEIGHT_DEC);
             break;
 
         case 'c':
+            // Increase leg height
             _cmdHandler.toggleButtons(BTN_HEIGHT_INC);
             break;
 
@@ -266,84 +268,105 @@ static int handleSerialCommand(unsigned long ts, int key) {
             break;
 
         case '1':
+            // Toggle to set in walking mode (0 = off, 1 = on)
+            // When off you can toggle with the space key between normal or transport position
             _cmdHandler.toggleButtons(BTN_WALK);
             break;
 
         case '2':
+            // Toggle to set in different gait modes (Lateral, Diagonal, Trot)
             _cmdHandler.toggleButtons(BTN_GAIT);
             break;
 
         case '3':
+            // Toggle to set in balance mode (0 = off, 1 = on)
             _cmdHandler.toggleButtons(BTN_BALANCE);
             //rc.roll = rc.pitch = rc.throttle = rc.yaw = 1500;
             break;
 
         case '4':
+            // Toggle the led strip (0 = off, 1 = on)
             _cmdHandler.toggleButtons(BTN_FLASH);
             //rc.roll = rc.pitch = rc.throttle = rc.yaw = 1500;
             break;
 
         case '9':
+            // Save user data
             _cmdHandler.toggleButtons(BTN_SAVE);
             break;
 
         case '0':
+            // Load user data
             _cmdHandler.toggleButtons(BTN_LOAD);
             break;
 
         case '!':
+            // Debug positions for leg 0 (use shift + '#' to toggle)
             _cmdHandler.getSpot()->setDebugMask(_cmdHandler.getSpot()->getDebugMask() ^ BV(0));
             break;
 
         case '@':
+            // Debug positions for leg 1 (use shift + '#' to toggle)
             _cmdHandler.getSpot()->setDebugMask(_cmdHandler.getSpot()->getDebugMask() ^ BV(1));
             break;
 
         case '#':
+            // Debug positions for leg 2 (use shift + '#' to toggle)
             _cmdHandler.getSpot()->setDebugMask(_cmdHandler.getSpot()->getDebugMask() ^ BV(2));
             break;
 
         case '$':
+            // Debug positions for leg 3 (use shift + '#' to toggle)
             _cmdHandler.getSpot()->setDebugMask(_cmdHandler.getSpot()->getDebugMask() ^ BV(3));
             break;
 
         case '=':
+            // Decrease step size
             _cmdHandler.toggleButtons(BTN_STEP_DEC);
             break;
 
         case '-':
+            // Increase step size
             _cmdHandler.toggleButtons(BTN_STEP_INC);
             break;
 
         case '[':
+            // Decrease XY step size
             _cmdHandler.toggleButtons(BTN_STEP_XY_DEC);
             break;
 
         case ']':
+            // Increase XY step size
             _cmdHandler.toggleButtons(BTN_STEP_XY_INC);
             break;
 
         case ';':
+            // Decrease Z step size
             _cmdHandler.toggleButtons(BTN_STEP_Z_DEC);
             break;
 
         case '\'':
+            // Increase Z step size (Dubbele punt)
             _cmdHandler.toggleButtons(BTN_STEP_Z_INC);
             break;
 
         case ' ':
+            // Switch between stands - BE CAREFULL!!
             _cmdHandler.toggleButtons(BTN_STAND);
             break;
 
         case ',':
+            // Tip offset decrease
             _cmdHandler.toggleButtons(BTN_OFFSET_DEC);
             break;
 
         case '.':
+            // Tip offset increase
             _cmdHandler.toggleButtons(BTN_OFFSET_INC);
             break;
 
         case 'h':
+            // Dumps the current leg state of the robot
             _cmdHandler.getHW()->dump();
             break;
 
