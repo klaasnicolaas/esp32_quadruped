@@ -216,6 +216,7 @@ static int handleSerialCommand(unsigned long ts, int key) {
     //
     switch (key) {
         case 'w':
+            // Move forward
             if (rc.pitch < 2000) {
                 rc.pitch++;
                 _cmdHandler.onRC(&rc);
@@ -223,6 +224,7 @@ static int handleSerialCommand(unsigned long ts, int key) {
             break;
 
         case 's':
+            // Move backward
             if (rc.pitch > 1000) {
                 rc.pitch--;
                 _cmdHandler.onRC(&rc);
@@ -230,6 +232,7 @@ static int handleSerialCommand(unsigned long ts, int key) {
             break;
 
         case 'a':
+            // Move left
             if (rc.roll > 1000) {
                 rc.roll--;
                 _cmdHandler.onRC(&rc);
@@ -237,6 +240,7 @@ static int handleSerialCommand(unsigned long ts, int key) {
             break;
 
         case 'd':
+            // Move right
             if (rc.roll < 2000) {
                 rc.roll++;
                 _cmdHandler.onRC(&rc);
@@ -254,6 +258,7 @@ static int handleSerialCommand(unsigned long ts, int key) {
             break;
 
         case 'e':
+            // Move yaw right way
             if (rc.yaw < 2000) {
                 rc.yaw += 10;
                 _cmdHandler.onRC(&rc);
@@ -261,6 +266,7 @@ static int handleSerialCommand(unsigned long ts, int key) {
             break;
 
         case 'q':
+            // Move yaw left way
             if (rc.yaw > 1000) {
                 rc.yaw -= 10;
                 _cmdHandler.onRC(&rc);
