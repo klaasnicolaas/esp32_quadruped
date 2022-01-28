@@ -161,30 +161,36 @@ void CommandHandler::setSwitches(int switches) {
 
     lastSwitches = switches;
     if (isSet(shift, toggled, BTN_STAND)) {
+        // Switch between normal or transport leg position
         _isStand = (switches & BTN_STAND);
         if (_isStand) {
             _timedMove.go({ 0, 0, 0 }, { 0, 0, 0 }, 1000);
+            LOG("Stand: normal (%d)\n", int(_isStand));
         } else {
             _timedMove.go({ 0, 0, BODY_IDLE_Z }, { 0, 0, 0 }, 1000);
+            LOG("Stand: transport (%d)\n", int(_isStand));
         }
-        LOG("stand:%d\n", int(_isStand));
     }
 
     if (isSet(shift, toggled, BTN_FLASH)) {
         _isFlash = (switches & BTN_FLASH);
-        LOG("flash:%d\n", int(_isFlash));
+        LOG("Flash: %d\n", int(_isFlash));
     }
 
     if (isSet(shift, toggled, BTN_GAIT)) {
         _nGait = (_nGait + 1) % _gaitMan.getGaitCnt();
         _pGait = _gaitMan.get(_nGait);
         _quadruped.setGait(_pGait);
-        LOG("gait : %s\n", _pGait->getName().c_str());
+        LOG("Gait: %s\n", _pGait->getName().c_str());
     }
 
     if (isSet(shift, toggled, BTN_WALK)) {
         _isWalk = (switches & BTN_WALK);
-        LOG("walking : %d\n", int(_isWalk));
+        if (_isWalk == 0) {
+            LOG("Walking: off (%d)\n", int(_isWalk));
+        } else {
+            LOG("Walking: on (%d)\n", int(_isWalk));
+        }
     }
 
     if (isSet(shift, toggled, BTN_OFFSET_DEC) || isSet(shift, toggled, BTN_OFFSET_DEC2)) {
@@ -354,7 +360,7 @@ void CommandHandler::onRC(struct param_rc* rc) {
         _rc.throttle = filterDeadZone(_rc.throttle);
         _rc.yaw      = filterDeadZone(_rc.yaw);
     }
-    //LOG("RC:%5d %5d %5d %5d\n", _rc.yaw, _rc.throttle, _rc.roll, _rc.pitch);
+    LOG("RC:%5d %5d %5d %5d\n", _rc.yaw, _rc.throttle, _rc.roll, _rc.pitch);
 }
 
 void CommandHandler::onAttitude(struct param_att* att) {

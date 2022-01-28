@@ -43,7 +43,7 @@
   </div>
   
   *click to youtube video*
-<br><br>
+<br>
 
 ## 3.Simulation
  - pose and walking simulation with [processing](https://processing.org/).
@@ -67,19 +67,19 @@
  - gait pattern generation with [processing](https://processing.org/)
  
    <img src="https://github.com/PingguSoft/esp32_quadruped/blob/main/pics/gait_pattern.gif?raw=true" width="60%">
-<br><br>
+<br>
 
 ## 4.robot control with BLE(bluetooth le) joystick
-  | key        |    control    |  key      |  control          |
-  |----------- |---------------|-----------|-------------------|
-  | **A**      | walk / stop   | **L2+L1** | step interval-    |
-  | **B**      | gait change   | **L2+R1** | step interval+    |
-  | **X**      | balance mode  | **L2+X**  | step height-      |
-  | **Y**      | flash ledstrip| **L2+Y**  | step height+      |
-  | **THUMB-L**| save settings | **L2+A**  | step dist-        |
-  | **THUMB-R**| load settings | **L2+B**  | step dist+        |
-  | **DPAD-L** | toe offset-   | **R2+L1** | toe offset-       |
-  | **DPAD-R** | toe offset+   | **R2+R1** | toe offset+       |
+  | key          |    control     |  key        |  control              |
+  |--------------|----------------|-------------|-----------------------|
+  | **A**        | walk / stop    | **L2 + L1** | step speed interval - |
+  | **B**        | gait change    | **L2 + R1** | step speed interval + |
+  | **X**        | balance mode   | **L2 + X**  | step height -         |
+  | **Y**        | flash ledstrip | **L2 + Y**  | step height +         |
+  | **THUMB - L**| save settings  | **L2 + A**  | step dist -           |
+  | **THUMB - R**| load settings  | **L2 + B**  | step dist +           |
+  | **DPAD - L** | toe offset -   | **R2 + L1** | toe offset -          |
+  | **DPAD - R** | toe offset +   | **R2 + R1** | toe offset +          |
 
 ----
 # Reference
