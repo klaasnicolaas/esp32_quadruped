@@ -11,14 +11,14 @@
 #define CONFIG_BODY_SPOTMICRO       1
 #define CONFIG_BODY_KANGAL          2
 #ifndef CONFIG_BODY
-#define CONFIG_BODY                 CONFIG_BODY_SPOTMICRO
+#define CONFIG_BODY                 CONFIG_BODY_KANGAL
 #endif
 
 #define CONFIG_CONTROL_BTPADS       1
 #define CONFIG_CONTROL_BT_UART      2
 #define CONFIG_CONTROL              CONFIG_CONTROL_BTPADS
 
-#define CONFIG_ENABLE_GYRO          1
+#define CONFIG_ENABLE_GYRO          0
 #define CONFIG_ENABLE_CAM_PAN_TILT  1
 
 /*

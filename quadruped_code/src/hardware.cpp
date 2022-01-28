@@ -227,24 +227,29 @@ void Hardware::calibrateLegs(int key) {
                 setLeg(i, 0, 0, 900);
             return;
 #endif
+        // Clear the calibration data
         case 'c':
             LOG("calibration cleared !\n");
             memset(&_calAngles, 0, sizeof(_calAngles));
             return;
 
+        // Save the calibration data
         case 's':
             saveConfig();
             LOG("calibration saved !\n");
             return;
 
+        // Load the calibration data
         case 'l':
             loadConfig();
             LOG("calibration loaded !\n");
 
+        // Print the calculated calibration data
         case 'p':
             LOG("---------- cal ----------\n");
+            LOG("Leg - Coxa - Femur - Tibia\n");
             for (int i = 0; i < BODY_NUM_LEGS; i++) {
-                LOG("leg:%d, %4d, %4d, %4d\n", i + 1, _calAngles[i][0], _calAngles[i][1], _calAngles[i][2]);
+                LOG("leg: %d, %4d, %4d, %4d\n", i + 1, _calAngles[i][0], _calAngles[i][1], _calAngles[i][2]);
             }
 #if CONFIG_ENABLE_CAM_PAN_TILT
             LOG("p&t:5, %4d, %4d\n", _calAnglesPanTilt[0], _calAnglesPanTilt[1]);
@@ -252,12 +257,20 @@ void Hardware::calibrateLegs(int key) {
             LOG("-------------------------\n");
             return;
 
-        // leg selection
+        /**
+         * Leg selection
+         * 
+         * 1 = front right
+         * 2 = rear right
+         * 3 = rear left
+         * 4 = front left
+         */
         case '1':
         case '2':
         case '3':
         case '4':
             leg   = key - '1';
+            // Reset joint selection to 0
             joint = 0;
             break;
 
@@ -268,7 +281,13 @@ void Hardware::calibrateLegs(int key) {
             break;
 #endif
 
-        // joint selection
+        /**
+         * joint selection
+         * 
+         * 0 = Coxa
+         * 1 = Femur
+         * 2 = Tibia
+        **/
         case '7':
         case '8':
         case '9':
