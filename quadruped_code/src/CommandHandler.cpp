@@ -360,7 +360,7 @@ void CommandHandler::onRC(struct param_rc* rc) {
         _rc.throttle = filterDeadZone(_rc.throttle);
         _rc.yaw      = filterDeadZone(_rc.yaw);
     }
-    LOG("RC:%5d %5d %5d %5d\n", _rc.yaw, _rc.throttle, _rc.roll, _rc.pitch);
+    // LOG("RC:%5d %5d %5d %5d\n", _rc.yaw, _rc.throttle, _rc.roll, _rc.pitch);
 }
 
 void CommandHandler::onAttitude(struct param_att* att) {
@@ -442,6 +442,16 @@ uint16_t CommandHandler::filterDeadZone(uint16_t val) {
     if (1480 <= val && val <= 1520) {
         val = 1500;
     }
+    if (_isWalk == 0) {
+        // Check in which mode the robot is
+        if (val <= 1150) {
+            val = 1150;
+        }
+        if (val >= 1750) {
+            val = 1750;
+        }
+    }
+    // 1150 en 1750
     return val;
 }
 
